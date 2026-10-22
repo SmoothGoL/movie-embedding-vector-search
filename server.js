@@ -1,11 +1,12 @@
 import openai from './config.js';
+import write from './writeJSON.js'
 
 /** Create embeddings representing the input text */
 async function main() {
   const embedding = await openai.embeddings.create({
-    model: "text-embedding-ada-002",
+    model: "text-embedding-3-small",
     input: "Hello, world!",
   });
-  console.log(embedding);
+  write(embedding);
 }
 main();
