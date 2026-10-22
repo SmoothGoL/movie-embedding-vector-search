@@ -1,0 +1,16 @@
+{
+  "name": "rag-and-vector-databases",
+  "version": "1.0.0",
+  "description": "Scrimba RAG and Vector Databases course",
+  "license": "ISC",
+  "author": "Michael Kim",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env server.js"
+  },
+  "dependencies": {
+    "openai": "^7.42.0"
+  }
+}
