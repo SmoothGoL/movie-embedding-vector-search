@@ -84,28 +84,63 @@ Search Keywords: murder mystery game, billionaire host, Greek island, detective 
 
 // ------------------------------------------------------------------------------------
 
-`The Super Mario Bros. Movie: 2023 | PG | 1h 32m | 7.1 rating
-'The Super Mario Bros. Movie': While working underground to fix a water main, Brooklyn plumbers and brothers Mario and Luigi are transported through a mysterious pipe to a magical new world. But when the siblings are separated, an epic adventure begins to save a captured princess. The Super Mario Bros. Movie is an animated adventure comedy directed by Aaron Horvath, Michael Jelenic and Pierre Leduc. It's voiced by the actors Chris Pratt, Anya Taylor-Joy and Charlie Day.`,
+`Title: The Super Mario Bros. Movie
+Metadata: Released 2023 | Rated PG | Runtime 1h 32m | User Score 7.1/10
+Genres & Tone: Animated, adventure, comedy, fantasy, family, portal fantasy, lighthearted
+Setting & Era: Brooklyn, underground, mysterious pipe, magical new world, contemporary
+Director: Aaron Horvath, Michael Jelenic, Pierre Leduc
+Cast: Chris Pratt, Anya Taylor-Joy, Charlie Day
+Characters & Roles: Mario (Brooklyn plumber), Luigi (Brooklyn plumber), Princess (captured royalty)
+Plot Summary: Brooklyn plumbers Mario and Luigi work underground repairing a water main when a mysterious pipe transports the brothers into a magical new world. The siblings become separated upon arrival, sparking an epic adventure to reunite the brothers and rescue a captured princess.
+Search Keywords: plumbers, underground water main, dimensional pipe, magical world, sibling separation, epic adventure, captive princess, Brooklyn, rescue mission, portal travel`,
 
 // ------------------------------------------------------------------------------------
 
-`A Haunting in Venice: 2023 | PG-13 | 1h 43m | 6.8 rating
-In 'A Haunting in Venice,' a post-WWII crime drama set in Venice, a retired detective attends a seance. Following a guest's murder, he's compelled to solve the mystery. The film's director is Kenneth Branagh, and stars Kenneth Branagh, Michelle Yeoh and Jamie Dornan.`,
+`Title: A Haunting in Venice
+Metadata: Released 2023 | Rated PG-13 | Runtime 1h 43m | User Score 6.8/10
+Genres & Tone: Crime drama, mystery, whodunit, murder mystery, supernatural, suspense, eerie
+Setting & Era: Venice, Italy, post-WWII, séance
+Director: Kenneth Branagh
+Cast: Kenneth Branagh, Michelle Yeoh, Jamie Dornan
+Characters & Roles: Retired detective (investigator), murdered guest (victim)
+Plot Summary: A retired detective attends a séance in post-WWII Venice. Following a guest's murder during the séance, the retired detective is compelled to investigate the crime and solve the murder mystery.
+Search Keywords: post-WWII Venice, séance, retired detective, murdered guest, whodunit, supernatural crime, murder investigation, deadly gathering, crime solving`,
 
 // ------------------------------------------------------------------------------------
 
-`Blue Beetle: 2023 | PG-13 | 2h 7m | 6.7 rating
-In The action-adventure film 'Blue Beetle', Jaime Reyes suddenly finds himself possessing an ancient relic of alien biotechnology called the Scarab. When the Scarab chooses Jaime to be its symbiotic host, he's bestowed with an incredible suit of armor capable of extraordinary and unpredictable powers, forever changing his destiny as he becomes the superhero Blue Beetle. The film stars Xolo Maridueña, Bruna Marquezine and Becky G, and Angel Manuel Soto is the director.`,
+`Title: Blue Beetle
+Metadata: Released 2023 | Rated PG-13 | Runtime 2h 7m | User Score 6.7/10
+Genres & Tone: Action, adventure, superhero, sci-fi, origin story, heroic, thrilling
+Setting & Era: Contemporary
+Director: Angel Manuel Soto
+Cast: Xolo Maridueña, Bruna Marquezine, Becky G
+Characters & Roles: Jaime Reyes (symbiotic host / superhero Blue Beetle), The Scarab (ancient relic of alien biotechnology)
+Plot Summary: Jaime Reyes acquires an ancient alien biotechnology relic known as the Scarab. The alien Scarab chooses Jaime Reyes as a symbiotic host, bestowing Jaime Reyes with an incredible armor suit featuring extraordinary and unpredictable powers, forever altering destiny as Jaime Reyes transforms into the superhero Blue Beetle.
+Search Keywords: superhero origin, alien biotechnology, ancient relic, symbiotic host, superpowered armor, unpredictable powers, destiny, technological suit, superhuman abilities`,
 
 // ------------------------------------------------------------------------------------
 
-`Expend4bles: 2023 | R | 1h 43m | 5.0 rating
-'Expend4bles' is an action movie featuring an elite team of mercenaries known as "The Expendables." They are the world's last resort for missions deemed too perilous for others. With a formidable arsenal and unmatched combat skills, they tackle high-stakes assignments, displaying their courage and unity. Directed by Scott Waugh, Expend4bles is a thrilling ride, starring Jason Statham, 50 Cent, and Megan Fox.`,
+`Title: Expend4bles
+Metadata: Released 2023 | Rated R | Runtime 1h 43m | User Score 5.0/10
+Genres & Tone: Action, thriller, combat, explosive, high-stakes, thrilling, violent
+Setting & Era: Contemporary, global, perilous mission environments
+Director: Scott Waugh
+Cast: Jason Statham, 50 Cent, Megan Fox
+Characters & Roles: The Expendables (elite team of mercenaries)
+Plot Summary: The elite mercenary team known as "The Expendables" serves as the world's last resort for missions deemed too perilous for conventional forces. Utilizing a formidable arsenal and unmatched combat skills, the mercenary team executes high-stakes assignments while displaying extreme courage and tactical unity.
+Search Keywords: mercenaries, elite combat team, high-stakes assignments, formidable arsenal, tactical warfare, deadly missions, last resort unit, action thriller, special operations`,
 
 // ------------------------------------------------------------------------------------
 
-`Asteroid City: 2023 | PG-13 | 1h 45m | 6.6 rating
-Chronicling the journey of a writer's renowned fictional tale, 'Asteroid City' unveils the transformation of a mourning father. He takes his technology-fixated family to the quaint Asteroid City for a junior stargazing competition. But there, his perspective on life is irrevocably changed. Wes Anderson directed the comedic drama Asteroid City, starring Jason Schwartzman, Scarlett Johansson, and Tom Hanks.`,
+`Title: Asteroid City
+Metadata: Released 2023 | Rated PG-13 | Runtime 1h 45m | User Score 6.6/10
+Genres & Tone: Comedic drama, family drama, meta-narrative, quirky, introspective, play-within-a-story
+Setting & Era: Quaint Asteroid City, junior stargazing competition
+Director: Wes Anderson
+Cast: Jason Schwartzman, Scarlett Johansson, Tom Hanks
+Characters & Roles: Mourning father (parent), technology-fixated family (children), writer (story author)
+Plot Summary: Chronicling a writer's renowned fictional tale, the narrative follows a mourning father transporting a technology-fixated family to quaint Asteroid City for a junior stargazing competition. During the stargazing event, the mourning father undergoes an irrevocable transformation regarding life perspective.
+Search Keywords: fictional tale, mourning father, stargazing competition, technology-fixated family, life transformation, family trip, grief, meta-storytelling, writer, quaint town`,
 
 // ------------------------------------------------------------------------------------
 
