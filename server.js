@@ -1,12 +1,8 @@
-import movies from './utils/content_movies.js';
+import movies from './content/content_movies.js';
 import store from './utils/storeMovieEmbeddings.js';
 import query from './utils/queryMovieEmbeddings.js';
-import getConversational from './utils/getConversationalResponse.js';
 import express from 'express';
-import { apiRouter } from './utils/routes/apiRoutes.js';
-import { marked } from "marked";
-import DOMPurify from "dompurify";
-import { JSDOM } from 'jsdom';
+import { apiRouter } from './utils/apiRoutes.js';
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -14,18 +10,10 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const window = new JSDOM('').window;
-const purify = DOMPurify(window);
-
-// purify.sanitize(marked.parse(data))
-
 // const prompt = "I feel lonely and just want to see something light-hearted."
 // const prompt = "The movie with that actor from Castaway";
 
-/** Create embeddings representing the input text */
-async function main() {
-  getConversational(prompt);
-}
+// getConversational(prompt);
 
 const PORT = 5173;
 

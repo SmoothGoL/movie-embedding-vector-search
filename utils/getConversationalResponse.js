@@ -8,10 +8,9 @@ export const messages = [{
 // Bring all function calls together
 export async function getConversationalResponse(input) {
   try {
-    // reply.innerHTML = "Thinking..."
     const embedding = await createEmbedding(input);
     const match = await findNearestMatch(embedding);
-    await getChatCompletion(match, input);
+    return await getChatCompletion(match, input);
   } catch (error) {
      console.error('Error in main function.', error.message);
      // reply.innerHTML = "Sorry, something went wrong. Please try again.";

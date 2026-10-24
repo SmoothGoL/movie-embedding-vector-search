@@ -1,5 +1,11 @@
 import express from 'express';
-import { getConversationalResponse } from './getConversationalResponse';
+import { getConversationalResponse } from './getConversationalResponse.js';
+import { marked } from "marked";
+import DOMPurify from "dompurify";
+import { JSDOM } from 'jsdom';
+
+const window = new JSDOM('').window;
+const purify = DOMPurify(window);
 
 export const apiRouter = express.Router();
 
@@ -16,6 +22,6 @@ apiRouter.post('/', async (req, res) => {
     res.json({ content: purify.sanitize(marked.parse(data)) });
   } catch (error) {
     console.error("OpenAI API Error:", error.message || error);
-    res.status(500).json({ message: "Failed to generate gift ideas. Check server logs." });
+    res.status(500).json({ message: "Failed to generate movie recommendations." });
   }
 });
