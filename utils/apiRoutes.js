@@ -6,7 +6,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { JSDOM } from 'jsdom';
 
-const replyFunction = 'improveUserPrompts';
+const replyFunction = 'ai';
 const window = new JSDOM('').window;
 const purify = DOMPurify(window);
 
@@ -26,11 +26,13 @@ apiRouter.post('/', async (req, res) => {
     }
 
     let data;
-    switch (replyFunction) {
-        case 'improveUserPrompts':
+    switch (replyFunction.toLowerCase()) {
+        case 'prompt':
+        case 'user prompt':
             data = await improveUserPrompts(userPrompt);
             break;
-        case 'getConversationalResponse':
+        case 'conversational':
+        case 'ai':
             data = await getConversationalResponse(userPrompt);
             break;
         case 'query':
