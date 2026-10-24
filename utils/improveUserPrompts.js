@@ -19,7 +19,7 @@ Output: movie, child
 History: "What movie can I take my child to?" -> "My child is 13 years old"
 Output: movie, 13 year old child
 
-History: "What movie can I take my child to?" -> "My child is 13 years old" -> "I forgot to mention that my child likes science fiction"
+History: "What movie can I take my child to?" -> "My child is 13 years old" -> "I forgot to mention that he likes science fiction"
 Output: movie, 13 year old child, science fiction
 ` 
 }];
@@ -34,7 +34,7 @@ export async function improveUserPrompts(input) {
         })
     }
     if (messages.length > 1) {
-        return await getChatCompletion(match, input);
+        return await getChatCompletion(input);
     } else {
         return '';
     }
@@ -44,21 +44,16 @@ export async function improveUserPrompts(input) {
   }
 }
 
-// Create an embedding vector representing the input text
-async function createEmbedding(input) {
-  const embeddingResponse = await openai.embeddings.create({
-    model: process.env.EMBEDDING_LARGE,
-    input
-  });
-  return embeddingResponse.data[0].embedding;
-}
+async function getChatCompletion(query) {
+    try {
+        const response = await openai.chat.completions.create({
+        model: process.env.AI_MODEL,
+        messages,
+        });
 
-async function getChatCompletion(text, query) {
-  
-  const response = await openai.chat.completions.create({
-    model: process.env.AI_MODEL,
-    messages,
-  });
-
-  return response.choices[0].message.content;
+        return response.choices[0].message.content; 
+    } catch (err) {
+        console.error(`OpenAI API error: ${err.message || err}`);
+        return `OpenAI API error: ${err.message || err}`;
+    }
 }
