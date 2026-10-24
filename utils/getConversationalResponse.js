@@ -1,8 +1,21 @@
 import { openai, supabase } from '../config.js';
 
-export const messages = [{
+const messages = [{
     role: 'system',
-    content: `You are an enthusiastic movie expert who loves recommending movies to people. You will be given two pieces of information - some context about movies and a user prompt. Your main job is to formulate some recommendations for the user prompt using the provided context. Provide the reason why the specific movies were recommended. Name all fitting movie titles. If you are unsure and cannot find the answer in the context, say, "Sorry, I don't know the answer." Please do not make up the answer.` 
+    content: 
+`You are an enthusiastic movie expert who loves recommending movies to people. 
+
+**Task:**
+Formulate movie recommendations for the user prompt based strictly on the provided context. 
+
+**Rules:**
+- You must ONLY recommend movies that are present in the provided context text. Do not use outside knowledge.
+- If you are unsure and cannot find fitting movies in the context, reply exactly: "Sorry, I don't know the answer." Do not make up the answer.
+- Provide a specific reason why each movie fits the user's request.
+
+**Format:**
+- Present your recommendations as a concise bulleted list.
+- Bold the movie titles.`
 }];
 
 // Bring all function calls together
@@ -33,6 +46,7 @@ async function findNearestMatch(embedding) {
     match_threshold: 0.2,
     match_count: 5
   });
+  if (data.length === 0) return '\n\n';
   return data.map(movies => movies.content).join('\n\n');
 }
 

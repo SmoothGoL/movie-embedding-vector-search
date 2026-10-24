@@ -5,7 +5,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { JSDOM } from 'jsdom';
 
-const chooseConversational = false;
+const replyFunction = 'improveUserPrompt';
 const window = new JSDOM('').window;
 const purify = DOMPurify(window);
 
@@ -19,13 +19,23 @@ apiRouter.post('/', async (req, res) => {
       return res.status(400).json({ message: "userPrompt is required" });
     }
 
-    const data = chooseConversational ? 
-        await getConversationalResponse(userPrompt) : 
-        await query(userPrompt);
+    let data;
+    switch (replyFunction) {
+        case 'improveUserPrompts':
+            data = await improveUserPrompts(userPrompt);
+            break;
+        case 'getConversationalResponse':
+            data = await getConversationalResponse(userPrompt);
+            break;
+        case 'query':
+            data = await query(userPrompt);
+            break;
+        default: data = `Function '${replyFunction}' does not exist.`;
+    }
 
     res.json({ content: purify.sanitize(marked.parse(data)) });
   } catch (error) {
-    console.error("OpenAI API Error:", error.message || error);
+    console.error(`Error in function call '${replyFunction}': ${error.message || error}`);
     res.status(500).json({ message: "Failed to generate movie recommendations." });
   }
 });
