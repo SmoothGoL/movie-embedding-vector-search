@@ -1,4 +1,4 @@
-import { openai, supabase } from './config.js';
+import { openai, supabase } from '.,/config.js';
 
 /*
   Create an embedding from the user input and return a 

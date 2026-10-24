@@ -1,4 +1,4 @@
-import { openai, supabase } from './config.js';
+import { openai, supabase } from '../config.js';
 
 export default async function storeMovieEmbeddings(input) {
   try {

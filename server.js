@@ -1,9 +1,9 @@
-import movies from './content_movies.js';
-import store from './storeMovieEmbeddings.js';
-import query from './queryMovieEmbeddings.js';
-import getConversational from './getConversationalResponse.js';
+import movies from './utils/content_movies.js';
+import store from './utils/storeMovieEmbeddings.js';
+import query from './utils/queryMovieEmbeddings.js';
+import getConversational from './utils/getConversationalResponse.js';
 import express from 'express';
-import { apiRouter } from './routes/apiRoutes.js';
+import { apiRouter } from './utils/routes/apiRoutes.js';
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { JSDOM } from 'jsdom';
