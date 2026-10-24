@@ -17,20 +17,18 @@ export default async function queryMovieEmbeddings(input) {
     // Query Supabase for nearest vector match
     const { data } = await supabase.rpc('match_movies_large', {
         query_embedding: embedding,
-        match_threshold: 0.18,
-        match_count: 3
+        match_threshold: 0.2,
+        match_count: 4
     });
 
     if (data.length === 0) {
-        console.log("No results found.");
-        return;
+        return "No results found.";
     }
+    console.log(data)
 
+    let output = '';
     data.forEach((movie, index) => 
-        console.log(
-            movie.content, 
-            movie.similarity, 
-            index === data.length - 1 ? '' : '\n\n'
-        )
+        output += `${movie.content} ${movie.similarity}\n\n` // ${index === data.length - 1 ? '' : '\n\n'}
     )
+    return output;
 }
