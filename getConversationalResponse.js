@@ -2,9 +2,15 @@ import { openai, supabase } from './config.js';
 
 // Bring all function calls together
 export default async function getConversationalResponse(input) {
-  const embedding = await createEmbedding(input);
-  const match = await findNearestMatch(embedding);
-  await getChatCompletion(match, input);
+  try {
+    // reply.innerHTML = "Thinking..."
+    const embedding = await createEmbedding(input);
+    const match = await findNearestMatch(embedding);
+    await getChatCompletion(match, input);
+  } catch (error) {
+     console.error('Error in main function.', error.message);
+     // reply.innerHTML = "Sorry, something went wrong. Please try again.";
+  }
 }
 
 // Create an embedding vector representing the input text
@@ -23,9 +29,7 @@ async function findNearestMatch(embedding) {
     match_threshold: 0.10,
     match_count: 5
   });
-  return data.map(movies_large => {
-    return `${movies_large.content}`;
-  }).join('\n\n');
+  return data.map(movies => movies.content).join('\n\n');
 }
 
 // Use OpenAI to make the response conversational

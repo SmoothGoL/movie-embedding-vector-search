@@ -4,7 +4,7 @@ import query from './queryMovieEmbeddings.js'
 import getConversational from './getConversationalResponse.js'
 
 // const prompt = "I feel lonely and just want to see something light-hearted."
-const prompt = "Something fun.";
+const prompt = "The movie with that actor from Castaway";
 
 /** Create embeddings representing the input text */
 async function main() {
