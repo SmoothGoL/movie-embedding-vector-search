@@ -3,6 +3,7 @@ const promptForm = document.getElementById('prompt-form');
 const userInput = document.getElementById('user-input');
 
 promptForm.addEventListener("submit", handleGiftRequest);
+await fetch('/api/new')
 
 async function handleGiftRequest(e) {
   // Prevent default form submission

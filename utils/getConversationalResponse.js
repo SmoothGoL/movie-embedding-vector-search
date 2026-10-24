@@ -1,9 +1,9 @@
 import { openai, supabase } from '../config.js';
 
 const messages = [{
-role: 'system',
-content:
-    `You are an enthusiastic movie expert who loves recommending movies to people. 
+    role: 'system',
+    content:
+        `You are an enthusiastic movie expert who loves recommending movies to people. 
 
 **Task:**
 Formulate movie recommendations for the user prompt based strictly on the provided context. 
@@ -67,5 +67,5 @@ return response.choices[0].message.content;
 }
 
 export function deleteChatHistory() {
-
+    messages = [ messages[0] ];
 }

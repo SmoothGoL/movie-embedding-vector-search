@@ -57,3 +57,7 @@ async function getChatCompletion(query) {
         return `OpenAI API error: ${err.message || err}`;
     }
 }
+
+export function deleteUserPrompts() {
+    messages = [ messages[0] ];
+}
