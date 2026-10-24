@@ -58,6 +58,8 @@ async function getChatCompletion(query) {
     }
 }
 
-export function deleteUserPrompts() {
-    messages = [ messages[0] ];
+export function restart() {
+    while (messages.length > 1) {
+        messages.pop();
+    }
 }

@@ -1,6 +1,6 @@
 import express from 'express';
-import { getConversationalResponse, deleteChatHistory } from './getConversationalResponse.js';
-import { improveUserPrompts, deleteUserPrompts } from './improveUserPrompts.js';
+import { getConversationalResponse, restart as deleteChatHistory } from './getConversationalResponse.js';
+import { improveUserPrompts, restart as deleteUserPrompts } from './improveUserPrompts.js';
 import query from './queryMovieEmbeddings.js'
 import { marked } from "marked";
 import DOMPurify from "dompurify";

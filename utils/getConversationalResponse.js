@@ -66,6 +66,8 @@ const response = await openai.chat.completions.create({
 return response.choices[0].message.content;
 }
 
-export function deleteChatHistory() {
-    messages = [ messages[0] ];
+export function restart() {
+    while (messages.length > 1) {
+        messages.pop();
+    }
 }
