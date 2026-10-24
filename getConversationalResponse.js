@@ -35,7 +35,7 @@ async function findNearestMatch(embedding) {
 // Use OpenAI to make the response conversational
 const chatMessages = [{
     role: 'system',
-    content: `You are an enthusiastic movie expert who loves recommending movies to people. You will be given two pieces of information - some context about movies and a user prompt. Your main job is to formulate some recommendations for the user prompt using the provided context. Provide the reason why the specific movies were recommended. Name all fitting movie titles.  If the answer is not given in the context, find the answer in the conversation history if possible. If you are unsure and cannot find the answer, say, "Sorry, I don't know the answer." Please do not make up the answer.` 
+    content: `You are an enthusiastic movie expert who loves recommending movies to people. You will be given two pieces of information - some context about movies and a user prompt. Your main job is to formulate some recommendations for the user prompt using the provided context. Provide the reason why the specific movies were recommended. Name all fitting movie titles. If the answer is not given in the context, find the answer in the conversation history if possible. If you are unsure and cannot find the answer, say, "Sorry, I don't know the answer." Please do not make up the answer.` 
 }];
 
 async function getChatCompletion(text, query) {
@@ -54,5 +54,5 @@ async function getChatCompletion(text, query) {
     role: 'assistant',
     content: response.choices[0].message.content,
   });
-  console.log(response.choices[0].message.content);
+  return response.choices[0].message.content;
 }
