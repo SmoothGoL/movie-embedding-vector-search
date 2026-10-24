@@ -37,20 +37,17 @@ async function findNearestMatch(embedding) {
 }
 
 async function getChatCompletion(text, query) {
-  // console.log(text, '\n\n')
-  messages.push({
-    role: 'user',
-    content: `Context: ${text}\n\nUser prompt: ${query}`
-  });
   
   const response = await openai.chat.completions.create({
     model: process.env.AI_MODEL,
-    messages: messages,
+    messages: [
+      messages[0],
+      {
+        role: 'user',
+        content: `Context: ${text}\n\nUser prompt: ${query}`
+      }
+    ],
   });
 
-  messages.push({
-    role: 'assistant',
-    content: response.choices[0].message.content,
-  });
   return response.choices[0].message.content;
 }
