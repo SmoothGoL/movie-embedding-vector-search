@@ -10,4 +10,4 @@ const prompt = "The movie with that actor from Castaway";
 async function main() {
   getConversational(prompt)
 }
-main();
+
