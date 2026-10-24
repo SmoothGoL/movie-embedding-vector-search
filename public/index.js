@@ -11,6 +11,7 @@ async function handleGiftRequest(e) {
 
   // Get user input, trim whitespace, exit if empty
   const userPrompt = userInput.value.trim();
+  promptForm.reset();
   if (!userPrompt) return;
 
   try {
