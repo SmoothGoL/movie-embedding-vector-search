@@ -19,7 +19,8 @@ async function handleGiftRequest(e) {
     promptForm.reset();
     if (!userPrompt) return;
     userPrompts.push(userPrompt);
-    
+    displayUserPrompt(userPrompt);
+
 
     try {
         // TODO: Step 1 — send fetch request to /api/gift
@@ -37,10 +38,13 @@ async function handleGiftRequest(e) {
         }
 
         // TODO: Step 5 — parse response and extract movieSuggestions
-        const { queryPrompt, aiResponse, queryResults, improvedUserPrompt } = data;
+        const { queryPrompt, aiResponse, queryResults, improvedUserPrompt, error } = data;
 
         // Render the result
-        reply.innerHTML = movieSuggestions;
+        // reply.innerHTML = movieSuggestions;
+        if (error) {
+            reply.textContent = error;
+        }
     } catch (error) {
         // Log the error for debugging
         console.error(error);
@@ -49,4 +53,10 @@ async function handleGiftRequest(e) {
         reply.textContent =
             "Sorry, I can't access what I need right now. Please try again in a bit.";
     }
+}
+
+function displayUserPrompt(userPrompt) {
+    const newPar = document.createElement('p');
+    newPar.textContent = userPrompt;
+    userPromptsEl.appendChild(newPar)
 }
