@@ -1,8 +1,10 @@
-const reply = document.querySelector('.reply');
+const reply = document.getElementById('reply');
 const promptForm = document.getElementById('prompt-form');
 const userInput = document.getElementById('user-input');
+const queryPrompt = document.getElementById('query-prompt');
 
 const userPrompts = [];
+let current
 
 promptForm.addEventListener("submit", handleGiftRequest);
 
@@ -33,7 +35,7 @@ async function handleGiftRequest(e) {
         }
 
         // TODO: Step 5 — parse response and extract movieSuggestions
-        const { aiResponse, queryResults, improvedUserPrompt } = data;
+        const { queryPrompt, aiResponse, queryResults, improvedUserPrompt } = data;
 
         // Render the result
         reply.innerHTML = movieSuggestions;
