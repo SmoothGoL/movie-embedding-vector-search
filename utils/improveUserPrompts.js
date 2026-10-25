@@ -31,23 +31,22 @@ Output: for 13 year old children, science fiction, something light-hearted`
 
 // Bring all function calls together
 export async function improveUserPrompts(userPrompts) {
-  try {
-    if (messages.length > 1) {
-        return await getChatCompletion(input);
-    } else {
-        return '';
+    try {
+        return await getChatCompletion(userPrompts);
+    } catch (error) {
+        console.error('Error in main function.', error.message);
+        // reply.innerHTML = "Sorry, something went wrong. Please try again.";
     }
-  } catch (error) {
-     console.error('Error in main function.', error.message);
-     // reply.innerHTML = "Sorry, something went wrong. Please try again.";
-  }
 }
 
-async function getChatCompletion(query) {
+async function getChatCompletion(userPrompts) {
     try {
         const response = await openai.chat.completions.create({
-        model: process.env.AI_MODEL,
-        messages,
+            model: process.env.AI_MODEL,
+            messages: [
+                systemPrompt,
+                ...userPrompts,
+            ],
         });
 
         return response.choices[0].message.content; 
