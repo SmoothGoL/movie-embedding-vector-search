@@ -58,3 +58,13 @@ button:hover {
     font-size: 1.15rem;
     line-height: 1.5;
 }
+
+.user-prompts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, auto);
+    gap: 5px;
+}
+
+.user-prompts p {
+    border: 1px solid limegreen;
+}
