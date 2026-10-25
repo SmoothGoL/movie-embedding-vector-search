@@ -5,7 +5,7 @@ const queryPromptEl = document.getElementById('query-prompt');
 const userPromptsEl = document.getElementById('user-prompts');
 
 const userPrompts = [];
-let current
+
 
 promptForm.addEventListener("submit", handleGiftRequest);
 
@@ -20,6 +20,7 @@ async function handleGiftRequest(e) {
     if (!userPrompt) return;
     userPrompts.push(userPrompt);
     displayUserPrompt(userPrompt);
+    localStorage.setItem('userPrompts', JSON.stringify(userPrompts));
 
 
     try {
@@ -93,3 +94,7 @@ userPromptsEl.addEventListener('click', e => {
         })
     }
 });
+
+function loadFromLocalStorage() {
+
+}
