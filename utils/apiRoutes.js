@@ -28,7 +28,7 @@ apiRouter.post('/', async (req, res) => {
                 data = await getConversationalResponse(userPrompts);
                 break;
             case 'query':
-                data = await query(userPrompts);
+                data = await query(userPrompts[userPrompts.length - 1]);
                 break;
             default: 
                 data = `Function '${replyFunction}' does not exist.`;
