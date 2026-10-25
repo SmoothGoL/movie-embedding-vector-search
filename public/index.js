@@ -2,6 +2,8 @@ const reply = document.querySelector('.reply');
 const promptForm = document.getElementById('prompt-form');
 const userInput = document.getElementById('user-input');
 
+const userPrompts = [];
+
 promptForm.addEventListener("submit", handleGiftRequest);
 
 async function handleGiftRequest(e) {
@@ -13,6 +15,7 @@ async function handleGiftRequest(e) {
     const userPrompt = userInput.value.trim();
     promptForm.reset();
     if (!userPrompt) return;
+    userPrompts.push(userPrompt);
 
     try {
         // TODO: Step 1 — send fetch request to /api/gift
@@ -21,7 +24,7 @@ async function handleGiftRequest(e) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ userPrompt }),
+            body: JSON.stringify({ userPrompts }),
         })
         const data = await response.json();
 
