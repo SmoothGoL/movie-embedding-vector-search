@@ -31,7 +31,7 @@ async function handleGiftRequest(e) {
         if (!response.ok) {
             throw new Error(data.message || "Server error")
         }
-
+        
         // TODO: Step 5 — parse response and extract movieSuggestions
         const movieSuggestions = data.content;
 

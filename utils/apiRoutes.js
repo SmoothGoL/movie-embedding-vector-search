@@ -17,7 +17,7 @@ apiRouter.post('/', async (req, res) => {
         // if (!userPrompts) {
         //     return res.status(400).json({ message: "userPrompt is required" });
         // }
-
+        let data;
         switch (replyFunction.toLowerCase()) {
             case 'prompt':
             case 'user prompt':
@@ -25,10 +25,12 @@ apiRouter.post('/', async (req, res) => {
                 break;
             case 'conversational':
             case 'ai':
-                res.json(await getConversationalResponse(userPrompts));
+                data = await getConversationalResponse(userPrompts);
+                data.aiResponse = purify.sanitize(marked.parse(data.aiResponse));
+                res.json(data);
                 break;
             case 'query':
-                const data = await query(userPrompts[userPrompts.length - 1]);
+                data = await query(userPrompts[userPrompts.length - 1]);
                 res.json({ queryResults: purify.sanitize(marked.parse(data)) });
                 
                 break;
