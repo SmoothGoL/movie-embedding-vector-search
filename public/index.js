@@ -1,7 +1,8 @@
 const reply = document.getElementById('reply');
 const promptForm = document.getElementById('prompt-form');
 const userInput = document.getElementById('user-input');
-const queryPrompt = document.getElementById('query-prompt');
+const queryPromptEl = document.getElementById('query-prompt');
+const userPromptsEl = document.getElementById('user-prompts');
 
 const userPrompts = [];
 let current
