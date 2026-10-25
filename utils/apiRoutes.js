@@ -35,7 +35,7 @@ apiRouter.post('/', async (req, res) => {
                 res.json(data);
                 break;
             default: 
-                data = `Function '${replyFunction}' does not exist.`;
+                res.json({ error: `Function '${replyFunction}' does not exist.` });
         }
         
     } catch (error) {
