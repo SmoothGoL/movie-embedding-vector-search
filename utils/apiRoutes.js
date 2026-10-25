@@ -31,7 +31,8 @@ apiRouter.post('/', async (req, res) => {
                 break;
             case 'query':
                 data = await query(userPrompts[userPrompts.length - 1]);
-                res.json({ queryResults: purify.sanitize(marked.parse(data)) });
+                data.queryResults = purify.sanitize(marked.parse(data.queryResults))
+                res.json(data);
                 
                 break;
             default: 
