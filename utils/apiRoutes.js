@@ -4,7 +4,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { JSDOM } from 'jsdom';
 
-const replyFunction = 'ai';
+const replyFunction = 'ddd';
 const window = new JSDOM('').window;
 const purify = DOMPurify(window);
 
@@ -33,7 +33,6 @@ apiRouter.post('/', async (req, res) => {
                 data = await query(userPrompts[userPrompts.length - 1]);
                 data.queryResults = purify.sanitize(marked.parse(data.queryResults))
                 res.json(data);
-                
                 break;
             default: 
                 data = `Function '${replyFunction}' does not exist.`;

@@ -19,6 +19,7 @@ async function handleGiftRequest(e) {
     promptForm.reset();
     if (!userPrompt) return;
     userPrompts.push(userPrompt);
+    
 
     try {
         // TODO: Step 1 — send fetch request to /api/gift
