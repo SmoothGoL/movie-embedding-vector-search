@@ -25,7 +25,9 @@ async function handleGiftRequest(e) {
     // Get user input, trim whitespace, exit if empty
     const userPrompt = userInput.value.trim();
     promptForm.reset();
-    if (!userPrompt && userPrompts.length === 0) return;
+    if (!userPrompt && userPrompts.length === 0) {
+        return;
+    }
     reply.textContent = "Thinking..."
     if (userPrompt) {
         userPrompts.push(userPrompt);
@@ -59,7 +61,7 @@ async function handleGiftRequest(e) {
 
         if (queryPrompt) {
             queryPromptEl.textContent = `Query prompt: ${queryPrompt}`;
-            reply.textContent = '';
+            if (!aiResponse) reply.textContent = '';
             localStorage.setItem('queryPrompt', queryPrompt);
         }
         // Render the result
@@ -92,6 +94,8 @@ function displayAllUserPrompts() {
         userPromptsEl.innerHTML = outputHtml;
     } else {
         userPromptsEl.textContent = '';
+        queryPromptEl.textContent = '';
+        localStorage.clear();
     }
 }
 
