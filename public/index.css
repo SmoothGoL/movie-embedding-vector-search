@@ -60,11 +60,20 @@ button:hover {
 }
 
 .user-prompts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, auto);
+    display: flex;
+    flex-wrap: wrap;
     gap: 5px;
 }
 
-.user-prompts p {
+.user-prompts div {
     border: 1px solid limegreen;
+    padding: 5px 10px;
+    display: flex;
+    gap 
+}
+
+.trash-emoticon {
+    height: 1rem;
+    width: auto;
+    display: block;
 }
