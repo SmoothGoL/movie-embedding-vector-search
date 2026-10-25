@@ -28,7 +28,7 @@ form {
 }
 
 input,
-button {
+.send-btn {
     padding: 10px 15px;
 }
 
@@ -38,7 +38,7 @@ input {
     border: none;
 }
 
-button {
+.send-btn {
     color: #fff;
     line-height: 0;
     background-color: #284b63;
@@ -46,7 +46,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.send-btn:hover {
     background-color: #416e8d;
 }
 
@@ -79,4 +79,15 @@ button:hover {
     width: auto;
     display: block;
     cursor: pointer;
+}
+
+#restart {
+    border: 1px solid black;
+    background: white;
+    color: black;
+    font-size: 2rem;
+    padding: 0.3rem 0.6rem;
+    position: fixed;
+    top: 10px;
+    right: 10px;
 }

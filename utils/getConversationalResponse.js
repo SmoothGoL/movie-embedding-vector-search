@@ -21,7 +21,7 @@ Formulate movie recommendations for the user prompt based strictly on the provid
 
 // Bring all function calls together
 export async function getConversationalResponse(userPrompts) {
-    const queryPrompt = await improveUserPrompts(userPrompts);
+    const queryPrompt = (await improveUserPrompts(userPrompts)).queryPrompt;
     try {
         const embedding = await createEmbedding(queryPrompt);
         const match = await findNearestMatch(embedding);
