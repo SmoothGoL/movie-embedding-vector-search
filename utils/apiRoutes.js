@@ -12,23 +12,23 @@ export const apiRouter = express.Router();
 
 apiRouter.post('/', async (req, res) => {
     try {
-        const { userPrompt } = req.body;
+        const { userPrompts } = req.body;
 
-        if (!userPrompt) {
-            return res.status(400).json({ message: "userPrompt is required" });
-        }
+        // if (!userPrompts) {
+        //     return res.status(400).json({ message: "userPrompt is required" });
+        // }
 
         switch (replyFunction.toLowerCase()) {
             case 'prompt':
             case 'user prompt':
-                data = await improveUserPrompts(userPrompt);
+                data = await improveUserPrompts(userPrompts);
                 break;
             case 'conversational':
             case 'ai':
-                data = await getConversationalResponse(userPrompt);
+                data = await getConversationalResponse(userPrompts);
                 break;
             case 'query':
-                data = await query(userPrompt);
+                data = await query(userPrompts);
                 break;
             default: 
                 data = `Function '${replyFunction}' does not exist.`;
