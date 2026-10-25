@@ -5,8 +5,8 @@ import { improveUserPrompts } from './improveUserPrompts.js';
   Create an embedding from the user input and return a 
   semantically matching text chunk from the database 
 */
-export default async function queryMovieEmbeddings(input) {
-    const queryPrompt = await improveUserPrompts(input);
+export default async function queryMovieEmbeddings(userPrompts) {
+    const { queryPrompt } = await improveUserPrompts(userPrompts);
     // Create a vector embedding representing the input text
     const embeddingResponse = await openai.embeddings.create({
         model: process.env.EMBEDDING_LARGE,

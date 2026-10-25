@@ -25,7 +25,7 @@ async function handleGiftRequest(e) {
     // Get user input, trim whitespace, exit if empty
     const userPrompt = userInput.value.trim();
     promptForm.reset();
-    if (!userPrompt && e) return;
+    if (!userPrompt && userPrompts.length === 0) return;
     reply.textContent = "Thinking..."
     if (userPrompt) {
         userPrompts.push(userPrompt);
