@@ -109,7 +109,8 @@ userPromptsEl.addEventListener('click', e => {
                 userPrompts.splice(index, 1);
                 localStorage.setItem('userPrompts', JSON.stringify(userPrompts));
                 displayAllUserPrompts();
-                handleGiftRequest();
+                localStorage.removeItem('queryPrompt');
+                displayQueryPrompt();
                 return;
             }
         })
@@ -119,6 +120,8 @@ userPromptsEl.addEventListener('click', e => {
 function displayQueryPrompt() {
     if (localStorage.getItem('queryPrompt')) {
         queryPromptEl.textContent = `Query prompt: ${localStorage.getItem('queryPrompt')}`;
+    } else {
+        queryPromptEl.textContent = '';
     }
 }
 

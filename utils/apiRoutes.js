@@ -6,7 +6,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { JSDOM } from 'jsdom';
 
-const replyFunction = 'ai';
+const replyFunction = 'improve';
 const window = new JSDOM('').window;
 const purify = DOMPurify(window);
 

@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-    margin: 20px 20px 0;
+    margin: 20px 20px 4.5rem;
 }
 
 h1 {
@@ -88,6 +88,6 @@ input {
     font-size: 2rem;
     padding: 0.3rem 0.6rem;
     position: fixed;
-    top: 10px;
+    bottom: 10px;
     right: 10px;
 }
