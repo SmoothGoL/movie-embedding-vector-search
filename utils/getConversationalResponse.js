@@ -1,7 +1,7 @@
 import { openai, supabase } from '../config.js';
 import { improveUserPrompts } from './improveUserPrompts.js';
 
-const messages = [{
+const systemPrompt = {
     role: 'system',
     content:
         `You are an enthusiastic movie expert who loves recommending movies to people. 
@@ -17,17 +17,15 @@ Formulate movie recommendations for the user prompt based strictly on the provid
 **Format:**
 - Present your recommendations as a concise bulleted list.
 - Bold the movie titles.`
-}];
-const userPrompts = []
+};
 
 // Bring all function calls together
-export async function getConversationalResponse(input) {
-    userPrompts.push(input);
-    const queryPrompt = await improveUserPrompts(input);
+export async function getConversationalResponse(userPrompts) {
+    const { queryPrompt } = await improveUserPrompts(userPrompts);
     try {
         const embedding = await createEmbedding(queryPrompt);
         const match = await findNearestMatch(embedding);
-        return await getChatCompletion(match, queryPrompt, userPrompts.join('\n'));
+        return await getChatCompletion(match, queryPrompt, userPrompts);
     } catch (error) {
         console.error('Error in main function.', error.message);
         // reply.innerHTML = "Sorry, something went wrong. Please try again.";
@@ -45,20 +43,20 @@ async function createEmbedding(input) {
 
 // Query Supabase and return a semantically matching text chunk
 async function findNearestMatch(embedding) {
-const { data } = await supabase.rpc('match_movies_large', {
-    query_embedding: embedding,
-    match_threshold: 0.1,
-    match_count: 5
-});
-if (data.length === 0) return '\n\n';
-return data.map(movies => movies.content).join('\n\n');
+    const { data } = await supabase.rpc('match_movies_large', {
+        query_embedding: embedding,
+        match_threshold: 0.1,
+        match_count: 5
+    });
+    if (data.length === 0) return '\n\n';
+    return data.map(movies => movies.content).join('\n\n');
 }
 
-async function getChatCompletion(text, queryPrompt) {
+async function getChatCompletion(text, queryPrompt, userPrompts) {
     const response = await openai.chat.completions.create({
         model: process.env.AI_MODEL,
         messages: [
-            messages[0],
+            systemPrompt,
             {
                 role: 'user',
                 content: `Context: ${text}\n\nUser prompt: ${userPrompts.join('\n')}`
@@ -66,11 +64,8 @@ async function getChatCompletion(text, queryPrompt) {
         ],
     });
 
-    return `Query prompt: ${queryPrompt}\n\nUser prompts: ${userPrompts.join(' | ')}\n\n${response.choices[0].message.content}`;
-}
-
-export function restart() {
-    while (userPrompts.length > 0) {
-        userPrompts.pop();
-    }
+    return {
+        queryPrompt,
+        aiResponse: response.choices[0].message.content
+    };
 }

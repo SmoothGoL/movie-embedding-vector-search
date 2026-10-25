@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-    margin: 20px 20px 0;
+    margin: 20px 20px 4.5rem;
 }
 
 h1 {
@@ -28,7 +28,7 @@ form {
 }
 
 input,
-button {
+.send-btn {
     padding: 10px 15px;
 }
 
@@ -38,7 +38,7 @@ input {
     border: none;
 }
 
-button {
+.send-btn {
     color: #fff;
     line-height: 0;
     background-color: #284b63;
@@ -46,7 +46,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.send-btn:hover {
     background-color: #416e8d;
 }
 
@@ -54,7 +54,40 @@ button:hover {
     font-size: 1.75rem;
 }
 
-.reply {
+.results {
     font-size: 1.15rem;
     line-height: 1.5;
+}
+
+.user-prompts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.user-prompts > div {
+    border: 1px solid limegreen;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.trash-emoticon {
+    height: 1rem;
+    width: auto;
+    display: block;
+    cursor: pointer;
+}
+
+#restart {
+    border: 1px solid black;
+    background: white;
+    color: black;
+    font-size: 2rem;
+    padding: 0.3rem 0.6rem;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
 }

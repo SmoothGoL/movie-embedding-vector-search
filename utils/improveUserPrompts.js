@@ -1,6 +1,6 @@
 import { openai } from '../config.js';
 
-const messages = [{
+const systemPrompt = {
     role: 'system',
     content: 
 `You are an AI that extracts exact search constraints from a user's conversation history to build a query for a vector database. 
@@ -27,44 +27,35 @@ Output: for 13 year old children, science fiction
 
 History: "What movie can I take my child to?" -> "My child is 13 years old" -> "I forgot to mention that he likes science fiction" -> "We want something light-hearted"
 Output: for 13 year old children, science fiction, something light-hearted` 
-}];
+};
 
 // Bring all function calls together
-export async function improveUserPrompts(input) {
-  try {
-    if (input) {
-        messages.push({
-            role: 'user',
-            content: input,
-        })
+export async function improveUserPrompts(userPrompts) {
+    try {
+        return await getChatCompletion(userPrompts);
+    } catch (error) {
+        console.error('Error in main function.', error.message);
+        // reply.innerHTML = "Sorry, something went wrong. Please try again.";
     }
-    if (messages.length > 1) {
-        return await getChatCompletion(input);
-    } else {
-        return '';
-    }
-  } catch (error) {
-     console.error('Error in main function.', error.message);
-     // reply.innerHTML = "Sorry, something went wrong. Please try again.";
-  }
 }
 
-async function getChatCompletion(query) {
+async function getChatCompletion(userPrompts) {
+    const userPromptMap = userPrompts.map(prompt => {
+        return { role: 'user', content: prompt };
+    });
     try {
         const response = await openai.chat.completions.create({
-        model: process.env.AI_MODEL,
-        messages,
+            model: process.env.AI_MODEL,
+            messages: [
+                systemPrompt,
+                ...userPromptMap,
+            ],
         });
 
-        return response.choices[0].message.content; 
+        return { queryPrompt: response.choices[0].message.content }; 
     } catch (err) {
         console.error(`OpenAI API error: ${err.message || err}`);
         return `OpenAI API error: ${err.message || err}`;
     }
 }
 
-export function restart() {
-    while (messages.length > 1) {
-        messages.pop();
-    }
-}
