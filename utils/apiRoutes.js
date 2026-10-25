@@ -1,48 +1,49 @@
 import express from 'express';
-import query from './queryMovieEmbeddings.js'
+import query from './queryMovieEmbeddings.js';
 import { improveUserPrompts } from './improveUserPrompts.js';
 import { getConversationalResponse } from './getConversationalResponse.js';
 import { marked } from "marked";
-import DOMPurify from "dompurify";
-import { JSDOM } from 'jsdom';
-
-const replyFunction = 'improve';
-const window = new JSDOM('').window;
-const purify = DOMPurify(window);
 
 export const apiRouter = express.Router();
 
 apiRouter.post('/', async (req, res) => {
     try {
-        const { userPrompts } = req.body;
+        // Extract replyFunction from request body, default to 'conversational'
+        const { userPrompts, replyFunction = 'dd' } = req.body;
 
-        // if (!userPrompts) {
-        //     return res.status(400).json({ message: "userPrompt is required" });
-        // }
+        if (!userPrompts || !Array.isArray(userPrompts) || userPrompts.length === 0) {
+            return res.status(400).json({ error: "userPrompts array is required and cannot be empty." });
+        }
+
         let data;
         switch (replyFunction.toLowerCase()) {
             case 'improve':
             case 'prompt':
             case 'user prompt':
-                res.json(await improveUserPrompts(userPrompts));
+                data = await improveUserPrompts(userPrompts);
+                res.json(data);
                 break;
             case 'conversational':
             case 'ai':
                 data = await getConversationalResponse(userPrompts);
-                data.aiResponse = purify.sanitize(marked.parse(data.aiResponse));
+                if (data?.aiResponse) {
+                    data.aiResponse = marked.parse(data.aiResponse);
+                }
                 res.json(data);
                 break;
             case 'query':
                 data = await query(userPrompts);
-                data.queryResults = purify.sanitize(marked.parse(data.queryResults))
+                if (data?.queryResults) {
+                    data.queryResults = marked.parse(data.queryResults);
+                }
                 res.json(data);
                 break;
             default: 
-                res.json({ error: `Function '${replyFunction}' does not exist.` });
+                res.status(400).json({ error: `Function '${replyFunction}' does not exist.` });
         }
         
     } catch (error) {
-        console.error(`Error in function call '${replyFunction}': ${error.message || error}`);
-        res.status(500).json({ message: "Failed to generate movie recommendations." });
+        console.error(`Error in API route: ${error.message || error}`);
+        res.status(500).json({ error: "Failed to generate movie recommendations." });
     }
 });
