@@ -45,9 +45,10 @@ async function handleGiftRequest(e) {
         } else if (queryResults) {
             reply.innerHTML = queryResults;
         } 
-        
+
         if (queryPrompt) {
             queryPromptEl.textContent = `Query prompt: ${queryPrompt}`;
+            reply.innerHTML = '';
         }
         // Render the result
         // reply.innerHTML = movieSuggestions;

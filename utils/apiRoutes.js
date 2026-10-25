@@ -1,10 +1,12 @@
 import express from 'express';
 import query from './queryMovieEmbeddings.js'
+import { improveUserPrompts } from './improveUserPrompts.js';
+import { getConversationalResponse } from './getConversationalResponse.js';
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { JSDOM } from 'jsdom';
 
-const replyFunction = 'ddd';
+const replyFunction = 'improve';
 const window = new JSDOM('').window;
 const purify = DOMPurify(window);
 
@@ -19,6 +21,7 @@ apiRouter.post('/', async (req, res) => {
         // }
         let data;
         switch (replyFunction.toLowerCase()) {
+            case 'improve':
             case 'prompt':
             case 'user prompt':
                 res.json(await improveUserPrompts(userPrompts));

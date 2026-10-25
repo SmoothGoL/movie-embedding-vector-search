@@ -40,12 +40,15 @@ export async function improveUserPrompts(userPrompts) {
 }
 
 async function getChatCompletion(userPrompts) {
+    const userPromptMap = userPrompts.map(prompt => {
+        return { role: 'user', content: prompt };
+    });
     try {
         const response = await openai.chat.completions.create({
             model: process.env.AI_MODEL,
             messages: [
                 systemPrompt,
-                ...userPrompts,
+                ...userPromptMap,
             ],
         });
 
