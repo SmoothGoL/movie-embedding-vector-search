@@ -12,7 +12,7 @@ export const apiRouter = express.Router();
 
 apiRouter.post('/', async (req, res) => {
     try {
-        const { userPrompts } = req.body;
+        const { userPrompts,  } = req.body;
 
         // if (!userPrompts) {
         //     return res.status(400).json({ message: "userPrompt is required" });
