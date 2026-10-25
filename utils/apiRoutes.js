@@ -1,6 +1,4 @@
 import express from 'express';
-import { getConversationalResponse, restart as deleteChatHistory } from './getConversationalResponse.js';
-import { improveUserPrompts, restart as deleteUserPrompts } from './improveUserPrompts.js';
 import query from './queryMovieEmbeddings.js'
 import { marked } from "marked";
 import DOMPurify from "dompurify";
@@ -11,11 +9,6 @@ const window = new JSDOM('').window;
 const purify = DOMPurify(window);
 
 export const apiRouter = express.Router();
-
-apiRouter.get('/new', (req, res) => {
-    deleteChatHistory();
-    deleteUserPrompts();
-})
 
 apiRouter.post('/', async (req, res) => {
   try {

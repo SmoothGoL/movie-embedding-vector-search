@@ -1,7 +1,7 @@
 import { openai, supabase } from '../config.js';
 import { improveUserPrompts } from './improveUserPrompts.js';
 
-const messages = [{
+const systemPrompt = {
     role: 'system',
     content:
         `You are an enthusiastic movie expert who loves recommending movies to people. 
@@ -17,12 +17,10 @@ Formulate movie recommendations for the user prompt based strictly on the provid
 **Format:**
 - Present your recommendations as a concise bulleted list.
 - Bold the movie titles.`
-}];
-const userPrompts = []
+};
 
 // Bring all function calls together
-export async function getConversationalResponse(input) {
-    userPrompts.push(input);
+export async function getConversationalResponse(userPrompts) {
     const queryPrompt = await improveUserPrompts(input);
     try {
         const embedding = await createEmbedding(queryPrompt);
@@ -67,10 +65,4 @@ async function getChatCompletion(text, queryPrompt) {
     });
 
     return `Query prompt: ${queryPrompt}\n\nUser prompts: ${userPrompts.join(' | ')}\n\n${response.choices[0].message.content}`;
-}
-
-export function restart() {
-    while (userPrompts.length > 0) {
-        userPrompts.pop();
-    }
 }

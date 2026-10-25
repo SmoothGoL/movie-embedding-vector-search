@@ -30,14 +30,8 @@ Output: for 13 year old children, science fiction, something light-hearted`
 }];
 
 // Bring all function calls together
-export async function improveUserPrompts(input) {
+export async function improveUserPrompts(userPrompts) {
   try {
-    if (input) {
-        messages.push({
-            role: 'user',
-            content: input,
-        })
-    }
     if (messages.length > 1) {
         return await getChatCompletion(input);
     } else {
@@ -63,8 +57,3 @@ async function getChatCompletion(query) {
     }
 }
 
-export function restart() {
-    while (messages.length > 1) {
-        messages.pop();
-    }
-}
