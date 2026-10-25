@@ -63,6 +63,7 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    margin-bottom: 0.5rem;
 }
 
 .user-prompts > div {
@@ -77,8 +78,5 @@ button:hover {
     height: 1rem;
     width: auto;
     display: block;
-}
-
-.delete-btn {
     cursor: pointer;
 }
