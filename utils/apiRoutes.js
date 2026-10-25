@@ -25,7 +25,7 @@ apiRouter.post('/', async (req, res) => {
                 break;
             case 'conversational':
             case 'ai':
-                data = await getConversationalResponse(userPrompts);
+                res.json(await getConversationalResponse(userPrompts));
                 break;
             case 'query':
                 const data = await query(userPrompts[userPrompts.length - 1]);
