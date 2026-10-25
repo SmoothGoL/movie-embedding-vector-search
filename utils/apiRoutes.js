@@ -21,19 +21,21 @@ apiRouter.post('/', async (req, res) => {
         switch (replyFunction.toLowerCase()) {
             case 'prompt':
             case 'user prompt':
-                data = await improveUserPrompts(userPrompts);
+                res.json(await improveUserPrompts(userPrompts));
                 break;
             case 'conversational':
             case 'ai':
                 data = await getConversationalResponse(userPrompts);
                 break;
             case 'query':
-                data = await query(userPrompts[userPrompts.length - 1]);
+                const data = await query(userPrompts[userPrompts.length - 1]);
+                res.json({ queryResults: purify.sanitize(marked.parse(data)) });
+                
                 break;
             default: 
                 data = `Function '${replyFunction}' does not exist.`;
         }
-        res.json({ content: purify.sanitize(marked.parse(data)) });
+        
     } catch (error) {
         console.error(`Error in function call '${replyFunction}': ${error.message || error}`);
         res.status(500).json({ message: "Failed to generate movie recommendations." });
