@@ -64,9 +64,9 @@ async function getChatCompletion(text, queryPrompt, userPrompts) {
         ],
     });
 
-    return JSON.stringify({
+    return {
         queryPrompt,
         userPrompts,
         aiResponse: response.choices[0].message.content
-    });
+    };
 }
