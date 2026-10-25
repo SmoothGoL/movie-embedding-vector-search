@@ -49,7 +49,7 @@ async function handleGiftRequest(e) {
         }
 
         // TODO: Step 5 — parse response and extract movieSuggestions
-        const { queryPrompt, aiResponse, queryResults, improvedUserPrompt, error } = data;
+        const { queryPrompt, aiResponse, queryResults, error } = data;
 
         if (aiResponse) {
             reply.innerHTML = aiResponse;
@@ -114,7 +114,7 @@ userPromptsEl.addEventListener('click', e => {
 
 function displayQueryPrompt() {
     if (localStorage.getItem('queryPrompt')) {
-        queryPromptEl.textContent = `${userPrompts.join(',')}Query prompt: ${localStorage.getItem('queryPrompt')}`;
+        queryPromptEl.textContent = `Query prompt: ${localStorage.getItem('queryPrompt')}`;
     }
 }
 
