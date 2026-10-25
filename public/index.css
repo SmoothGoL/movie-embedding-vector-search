@@ -65,15 +65,20 @@ button:hover {
     gap: 5px;
 }
 
-.user-prompts div {
+.user-prompts > div {
     border: 1px solid limegreen;
     padding: 5px 10px;
     display: flex;
-    gap 
+    align-items: center;
+    gap: 5px;
 }
 
 .trash-emoticon {
     height: 1rem;
     width: auto;
     display: block;
+}
+
+.delete-btn {
+    cursor: pointer;
 }
