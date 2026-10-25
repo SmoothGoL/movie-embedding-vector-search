@@ -25,7 +25,7 @@ export async function getConversationalResponse(userPrompts) {
     try {
         const embedding = await createEmbedding(queryPrompt);
         const match = await findNearestMatch(embedding);
-        return await getChatCompletion(match, queryPrompt, userPrompts.join('\n'));
+        return await getChatCompletion(match, queryPrompt, userPrompts);
     } catch (error) {
         console.error('Error in main function.', error.message);
         // reply.innerHTML = "Sorry, something went wrong. Please try again.";
@@ -52,7 +52,7 @@ if (data.length === 0) return '\n\n';
 return data.map(movies => movies.content).join('\n\n');
 }
 
-async function getChatCompletion(text, queryPrompt) {
+async function getChatCompletion(text, queryPrompt, userPrompts) {
     const response = await openai.chat.completions.create({
         model: process.env.AI_MODEL,
         messages: [
