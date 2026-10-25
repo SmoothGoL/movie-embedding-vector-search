@@ -49,7 +49,7 @@ async function getChatCompletion(userPrompts) {
             ],
         });
 
-        return response.choices[0].message.content; 
+        return JSON.stringify({ content: response.choices[0].message.content }); 
     } catch (err) {
         console.error(`OpenAI API error: ${err.message || err}`);
         return `OpenAI API error: ${err.message || err}`;
