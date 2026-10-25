@@ -1,6 +1,6 @@
 import { openai } from '../config.js';
 
-const messages = [{
+const systemPrompt = {
     role: 'system',
     content: 
 `You are an AI that extracts exact search constraints from a user's conversation history to build a query for a vector database. 
@@ -27,7 +27,7 @@ Output: for 13 year old children, science fiction
 
 History: "What movie can I take my child to?" -> "My child is 13 years old" -> "I forgot to mention that he likes science fiction" -> "We want something light-hearted"
 Output: for 13 year old children, science fiction, something light-hearted` 
-}];
+};
 
 // Bring all function calls together
 export async function improveUserPrompts(userPrompts) {
