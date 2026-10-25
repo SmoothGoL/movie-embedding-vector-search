@@ -56,7 +56,7 @@ async function getChatCompletion(text, queryPrompt, userPrompts) {
     const response = await openai.chat.completions.create({
         model: process.env.AI_MODEL,
         messages: [
-            messages[0],
+            systemPrompt,
             {
                 role: 'user',
                 content: `Context: ${text}\n\nUser prompt: ${userPrompts.join('\n')}`
