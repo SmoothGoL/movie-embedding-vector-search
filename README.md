@@ -1,7 +1,27 @@
-This is a web app that can search for movies using natural language queries. It first extracts the relevant search terms and phrases into a list using an LLM, and then creates an embedding vector of the search term/phrase. It then makes a similarity search on the vector embedding database. The results are then presented by an LLM in natural language text.
+# AI-Powered Movie Search Engine
 
-The movie database is currently only populated with the following movies: Oppenheimer (2023), Elemental (2023), Top Gun: Maverick (2022), Barbie (2023), The Menu (2022), M3GAN (2022), Glass Onion (2022), The Super Mario Bros. Movie (2023), A Haunting in Venice (2023), Blue Beetle (2023), Expend4bles (2023), Asteroid City (2023), Jurassic Park (1993).
+A natural language search application that allows users to find movies using semantic meaning rather than exact keyword matches.
 
-Part of the material were taken from AI courses of scrimba.com. The web app was improved upon by myself, and many parts are new.
+**Live Demo:** https://movie-embedding-vector-search.onrender.com/
+*(Note: Hosted on Render's free tier. Please allow 30-50 seconds for the server to wake up on the initial load).*
 
-The app is currently hosted on the free tier of Render.com. That is why it might take a while to wake the server from an inactive phase.
+## How It Works
+1. **Query Processing:** Uses an LLM to extract core search terms and intent from user queries.
+2. **Vector Embeddings:** Converts the extracted terms into vector embeddings.
+3. **Semantic Search:** Performs a similarity search against a vector database of movie metadata.
+4. **Natural Language Output:** Feeds the relevant results back through an LLM to present a conversational, contextual answer.
+
+## My Contributions & Improvements
+This project originated as a proof-of-concept from the Scrimba AI course "RAG and Vector Databases." I expanded the original frontend-only tutorial into a more secure and feature-rich prototype, replacing or rewriting ~50-60% of the underlying logic.
+
+Key technical improvements include:
+- **Security & Backend Migration:** Moved the OpenAI API integration from the client-side to a dedicated Express.js server, eliminating the `dangerouslyAllowBrowser` vulnerability used in the original tutorial.
+- **Custom Prompt Engineering:** Built a custom LLM extraction pipeline from scratch to isolate relevant search terms and intent before vectorization.
+- **Persistent Chat History:** Implemented `localStorage` to save user prompts across browser reloads and allow users to delete individual past queries.
+- **Optimized Context Window:** Refined how sequential user prompts are stored and fed back into the LLM, ensuring the model generates highly relevant search terms based on the entire conversation history.
+
+## Current Database
+To demonstrate the semantic search capabilities as a prototype, the vector database contains a curated micro-dataset of 13 films, including: *Oppenheimer (2023), Elemental (2023), Top Gun: Maverick (2022), Barbie (2023)*, and *Jurassic Park (1993)*.
+
+## Acknowledgements
+The base concept and UI design were provided by the AI curriculum on [Scrimba](https://scrimba.com).
