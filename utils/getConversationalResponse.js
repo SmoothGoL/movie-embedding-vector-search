@@ -1,4 +1,4 @@
-import { openai, supabase } from '../config.js';
+import { openai, openai2, supabase } from '../config.js';
 import { improveUserPrompts } from './improveUserPrompts.js';
 
 const systemPrompt = {
@@ -59,8 +59,8 @@ async function findNearestMatch(embedding) {
 }
 
 async function getChatCompletion(text, queryPrompt, userPrompts) {
-    const response = await openai.chat.completions.create({
-        model: process.env.AI_MODEL,
+    const response = await openai2.chat.completions.create({
+        model: process.env.SECONDARY_AI_MODEL,
         messages: [
             systemPrompt,
             {
