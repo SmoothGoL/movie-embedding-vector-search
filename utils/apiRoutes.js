@@ -9,7 +9,7 @@ export const apiRouter = express.Router();
 apiRouter.post('/', async (req, res) => {
     try {
         // Extract replyFunction from request body, default to 'conversational'
-        const { userPrompts, replyFunction = 'conversational' } = req.body;
+        const { userPrompts, replyFunction = 'improve' } = req.body;
 
         if (!userPrompts || !Array.isArray(userPrompts) || userPrompts.length === 0) {
             return res.status(400).json({ error: "userPrompts array is required and cannot be empty." });

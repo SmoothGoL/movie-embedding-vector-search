@@ -52,21 +52,22 @@ async function handleGiftRequest(e) {
 
         const { queryPrompt, aiResponse, queryResults, error } = data;
 
+        // index.js
         if (error) {
             reply.textContent = error;
             return;
         }
 
-        // InnerHTML is safe here ONLY if aiResponse/queryResults are sanitized on the backend
+        reply.textContent = ''; // Clear "Thinking..." as soon as a valid response arrives
+
         if (aiResponse) {
             reply.innerHTML = aiResponse;
         } else if (queryResults) {
             reply.innerHTML = queryResults;
-        } 
+        }
 
-        if (queryPrompt) {
-            queryPromptEl.textContent = `Query prompt: ${queryPrompt}`;
-            if (!aiResponse) reply.textContent = '';
+        if (queryPrompt !== undefined && queryPrompt !== null) {
+            queryPromptEl.textContent = queryPrompt ? `Query prompt: ${queryPrompt}` : 'No constraints detected.';
             localStorage.setItem('queryPrompt', queryPrompt);
         }
     } catch (error) {
