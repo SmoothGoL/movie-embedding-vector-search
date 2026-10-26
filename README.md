@@ -24,4 +24,4 @@ Key technical improvements include:
 To demonstrate the semantic search capabilities as a prototype, the vector database contains a curated micro-dataset of 13 films, including: *Oppenheimer (2023), Elemental (2023), Top Gun: Maverick (2022), Barbie (2023)*, and *Jurassic Park (1993)*.
 
 ## Acknowledgements
-The base concept and UI design were provided by the AI curriculum on [Scrimba](https://scrimba.com).
+The base concept, UI design, SQL commands, and the majority of the movie descriptions were provided by the AI curriculum on [Scrimba](https://scrimba.com).
