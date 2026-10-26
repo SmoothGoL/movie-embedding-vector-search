@@ -25,11 +25,14 @@ export default async function queryMovieEmbeddings(userPrompts) {
 
     let output = `Query: ${queryPrompt}\n\n`;
     if (data.length === 0) {
-        return `${output}No results found.`;
-    }
+    return { 
+        queryPrompt: queryPrompt, 
+        queryResults: `${output}No results found.` 
+    };
+}
 
     data.forEach((movie, index) => 
         output += `${movie.content} ${movie.similarity}${index === data.length - 1 ? '' : '\n\n'}` // 
     )
-    return { queryPrompt, queryResults: output };
+    return { queryPrompt: queryPrompt, queryResults: output };
 }

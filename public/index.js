@@ -59,7 +59,7 @@ async function handleGiftRequest(e) {
         }
 
         reply.textContent = ''; // Clear "Thinking..." as soon as a valid response arrives
-
+        console.log(data)
         if (aiResponse) {
             reply.innerHTML = aiResponse;
         } else if (queryResults) {
