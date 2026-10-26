@@ -3,8 +3,7 @@ import { improveUserPrompts } from './improveUserPrompts.js';
 
 const systemPrompt = {
     role: 'system',
-    content:
-        `You are an enthusiastic movie expert who loves recommending movies to people. 
+    content: `You are an enthusiastic movie expert who loves recommending movies to people. 
 
 **Task:**
 Formulate movie recommendations for the user prompt based strictly on the provided context. 
@@ -19,20 +18,24 @@ Formulate movie recommendations for the user prompt based strictly on the provid
 - Bold the movie titles.`
 };
 
-// Bring all function calls together
 export async function getConversationalResponse(userPrompts) {
-    const { queryPrompt } = await improveUserPrompts(userPrompts);
     try {
+        const { queryPrompt } = await improveUserPrompts(userPrompts);
+        
+        if (!queryPrompt) {
+            throw new Error("Failed to generate query prompt.");
+        }
+
         const embedding = await createEmbedding(queryPrompt);
         const match = await findNearestMatch(embedding);
         return await getChatCompletion(match, queryPrompt, userPrompts);
     } catch (error) {
-        console.error('Error in main function.', error.message);
-        // reply.innerHTML = "Sorry, something went wrong. Please try again.";
+        console.error('Error in getConversationalResponse:', error.message);
+        // Throw the error so the router's catch block can send a 500 response
+        throw error; 
     }
 }
 
-// Create an embedding vector representing the input text
 async function createEmbedding(input) {
     const embeddingResponse = await openai.embeddings.create({
         model: process.env.EMBEDDING_LARGE,
@@ -41,14 +44,17 @@ async function createEmbedding(input) {
     return embeddingResponse.data[0].embedding;
 }
 
-// Query Supabase and return a semantically matching text chunk
 async function findNearestMatch(embedding) {
-    const { data } = await supabase.rpc('match_movies_large', {
+    const { data, error } = await supabase.rpc('match_movies_large', {
         query_embedding: embedding,
         match_threshold: 0.1,
         match_count: 5
     });
-    if (data.length === 0) return '\n\n';
+    
+    // Explicitly check for Supabase RPC errors
+    if (error) throw new Error(`Supabase query failed: ${error.message}`);
+    
+    if (!data || data.length === 0) return '\n\n';
     return data.map(movies => movies.content).join('\n\n');
 }
 
