@@ -31,5 +31,5 @@ export default async function queryMovieEmbeddings(userPrompts) {
     data.forEach((movie, index) => 
         output += `${movie.content} ${movie.similarity}${index === data.length - 1 ? '' : '\n\n'}` // 
     )
-    return { queryResults: output };
+    return { queryPrompt, queryResults: output };
 }
