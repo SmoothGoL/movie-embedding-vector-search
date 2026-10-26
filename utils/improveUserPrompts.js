@@ -1,4 +1,4 @@
-import { openai } from '../config.js';
+import { openai2 } from '../config.js';
 
 const systemPrompt = {
     role: 'system',
@@ -45,8 +45,8 @@ async function getChatCompletion(userPrompts) {
         return { role: 'user', content: prompt };
     });
     try {
-        const response = await openai.chat.completions.create({
-            model: process.env.AI_MODEL,
+        const response = await openai2.chat.completions.create({
+            model: process.env.SECONDARY_AI_MODEL,
             messages: [
                 systemPrompt,
                 ...userPromptMap,
