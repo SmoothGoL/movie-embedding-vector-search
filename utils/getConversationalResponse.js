@@ -47,7 +47,7 @@ async function createEmbedding(input) {
 async function findNearestMatch(embedding) {
     const { data, error } = await supabase.rpc('match_movies_large', {
         query_embedding: embedding,
-        match_threshold: 0.1,
+        match_threshold: 0.01,
         match_count: 5
     });
     
