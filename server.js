@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 
 // getConversational(prompt);
 
-const PORT = 5173;
+const PORT = process.env.PORT || 8001;
 
 const app = express();
 app.use(express.json());
