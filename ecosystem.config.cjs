@@ -4,11 +4,11 @@ module.exports = {
       name: "movie-embedding",
       script: "./server.js",
       node_args: "--env-file=.env",
-      env: {
+      env_development: {
         NODE_ENV: "development",
         PORT: 5173,
       },
-      env_production: {
+      env: {
         NODE_ENV: "production",
         PORT: 8001,
       },
